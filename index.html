@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <label>Formula</label>
+        <select id="formulaDropdown" name="formulaDropdown" onchange='document.getElementById("formulaText").value = this.value;'>
+            <option value="z^2+c">Mandelbrot Set</option>
+            <option value="(abs(re(z))-i*abs(im(z)))^2+c">Burning Ship</option> 
+            <option value="abs(re(z^2))+i*abs(im(z^2))+re(c)-i*im(c)">Buffalo</option>
+            <option value="zc+1/(z+c)">Intricate Galaxy</option>
+            <option value="zc+t*0.0001/(z+c)">Intricate Galaxy (Animated)</option>
+        </select>
+        <input type="text" id="formulaText" name="formulaText" value="zc+1/(z+c)" placeholder="z^2+c">
+        <label>Iteration Count</label>
+        <input type="text" id="iterationCount" name="iterationCount" value="1000" placeholder="Iterations">
+        <label><a href="https://mycolor.space/gradient3" rel="noopener noreferrer" target="_blank">Color Scheme</a></label>
+        <input type="text" id="colorScheme" name="colorScheme" value="background-image: linear-gradient(to right top, #140101, #372c26, #5c5449, #7f8272, #a1b2a4, #a1bfae, #9fccba, #9ad9ca, #75c4a4, #5bae79, #4c974a, #457f0e);#509f5a, #698c34, #7a7714, #876000, #a43e11, #b6003a, #ac0071, #6a11af" placeholder="Color Scheme">
+        <label>Color Period</label>
+        <input type="text" id="colorPeriod" name="colorPeriod" value="100">
+        <label>Orbit Trap</label>
+        <input type="checkbox" id="enableOrbitTrap" name="enableOrbitTrap" checked="true" onchange="toggleOrbitTrapOptions()">
+        <div id="orbitTrapOptions" style="display: inline">
+        <label>Orbit Trap Type</label>
+            <select id = "orbitTrapType" name="orbitTrapType">
+                <option value="point">Point</option>
+                <option value="circle">Circle</option>
+                <option value="cross">Cross</option>
+                <option value="fourCircles">Four Circles</option>
+            </select>
+        </div>
+        <input type="button" id="update" name="update" value="Update" onclick="beginShader()">
+        <script src="https://webgl2fundamentals.org/webgl/resources/webgl-utils.js"></script>
+        <script type="text/javascript" src="scripts/options.js"></script>
+        <script type="text/javascript" src="scripts/fragShader.js"></script>
+        <script type="text/javascript" src="scripts/updateFractal.js"></script>
+        <script type="text/javascript" src="scripts/main.js"></script>
+    </body>
+</html>

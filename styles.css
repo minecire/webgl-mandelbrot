@@ -1,0 +1,73 @@
+head {
+    margin: 0px;
+    border: 0px;
+}
+
+body {
+    background-color: #507180;
+    margin: 0px;
+    border: 0px;
+    overflow: hidden;
+}
+
+canvas {
+    float: left;
+}
+
+label {
+    font-family:Courier;
+    font-size:1.7vh;
+    margin:0.3%;
+}
+
+input[type=text] {
+    font-family:Courier;
+    font-size:2vh;
+    width:57.5%;
+    margin:0.3%;
+    border:0px;
+    border-radius:0px;
+
+}
+
+select {
+    font-family:Courier;
+    font-size:2vh;
+    margin:0.3%;
+    border:0px;
+    border-radius:0px;
+}
+
+input[type=button] {
+    font-family:Courier;
+    background-color:#052b63;
+    color:#FFFFFF;
+    font-size:2vh;
+    width:57.5%;
+    margin:0.3%;
+    border:0px;
+    border-radius:0px;
+}
+input[type=button]:hover {
+    background-color:#0b3a81;
+}
+input[type=button]:active {
+    background-color:#6b32c7;
+}
+
+a{
+    text-decoration: none;
+    color:#1b0a7a
+}
+
+.editableBox {
+    width: 75px;
+    height: 30px;
+}
+
+.editableBoxInput {
+    width: 54px;
+    margin-left: -78px;
+    height: 25px;
+    border: none;
+}
