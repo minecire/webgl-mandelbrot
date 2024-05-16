@@ -121,6 +121,9 @@ function updateFractal(){
     timeOfLastPause = currentTime;
     pauseTime = 0;
     previousPauseTime = 0;
+    initialZ = [Number(document.getElementById("initZX").value), Number(document.getElementById("initZY").value)];
+    initialZC = document.getElementById("initZC").checked ? 1 : 0;
+    initialZCT = document.getElementById("initZCT").checked? Math.exp(document.getElementById("initZCTSlider").value/10-10) : 0;
     fragmentShaderSource = fragmentShaderSourcePreedit;
     fragmentShaderSource = fragmentShaderSource.replace("{{function}}", generateFunction(document.getElementById("formulaText").value));
     fragmentShaderSource = fragmentShaderSource.replace("{{controlPoints}}", generateControlPoints(document.getElementById("colorScheme").value));

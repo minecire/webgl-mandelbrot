@@ -15,6 +15,9 @@ var pauseTime = 0;
 var paused = true;
 var iterationCount;
 var colorPeriod;
+var initialZ = [0,0];
+var initialZC = 0;
+var initialZCT = 0;
 
 var juliaPos = [0,0];
 var juliaZoom = 1;
@@ -55,6 +58,11 @@ function beginShader(){
     timeUniformLocation = gl.getUniformLocation(program,"time");
     iterationCountUniformLocation = gl.getUniformLocation(program,"iterationCount");
     colorPeriodUniformLocation = gl.getUniformLocation(program,"colorPeriod");
+    initialZUniformLocation = gl.getUniformLocation(program,"initialZ");
+    initialZCUniformLocation = gl.getUniformLocation(program,"initialZC");
+    initialZCTUniformLocation = gl.getUniformLocation(program,"initialZCT");
+
+
     juliaPositionUniformLocation = gl.getUniformLocation(program,"juliaPos");
     juliaZoomUniformLocation = gl.getUniformLocation(program,"juliaZoom");
     juliaSizeUniformLocation = gl.getUniformLocation(program,"juliaSize");
@@ -103,6 +111,9 @@ function beginShader(){
     gl.uniform1f(timeUniformLocation, timeSinceUpdate);
     gl.uniform1i(iterationCountUniformLocation, iterationCount);
     gl.uniform1f(colorPeriodUniformLocation, colorPeriod);
+    gl.uniform2fv(initialZUniformLocation, initialZ);
+    gl.uniform1i(initialZCUniformLocation, initialZC);
+    gl.uniform1f(initialZCTUniformLocation, initialZCT);
 
     gl.uniform2fv(juliaPositionUniformLocation, juliaPos);
     gl.uniform1f(juliaZoomUniformLocation, juliaZoom);
@@ -125,6 +136,9 @@ function draw(){
     gl.uniform1f(timeUniformLocation, timeSinceUpdate);
     gl.uniform1i(iterationCountUniformLocation, iterationCount);
     gl.uniform1f(colorPeriodUniformLocation, colorPeriod);
+    gl.uniform2fv(initialZUniformLocation, initialZ);
+    gl.uniform1i(initialZCUniformLocation, initialZC);
+    gl.uniform1f(initialZCTUniformLocation, initialZCT);
     
     gl.uniform2fv(juliaPositionUniformLocation, juliaPos);
     gl.uniform1f(juliaZoomUniformLocation, juliaZoom);

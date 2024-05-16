@@ -38,6 +38,8 @@ select {
     border-radius:0px;
 }
 
+
+
 input[type=button] {
     font-family:Courier;
     background-color:#052b63;
@@ -60,14 +62,16 @@ a{
     color:#1b0a7a
 }
 
-.editableBox {
-    width: 75px;
-    height: 30px;
+input[id=initZX]{
+    width: 10vh;
 }
 
-.editableBoxInput {
-    width: 54px;
-    margin-left: -78px;
-    height: 25px;
-    border: none;
+input[id=initZY]{
+    width: 10vh;
+}
+
+input[type=checkbox]{
+    vertical-align:middle;
+    width:2.2vh;
+    height:2.2vh;
 }

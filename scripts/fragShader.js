@@ -121,6 +121,9 @@ uniform float colorPeriod;
 uniform vec2 juliaPos;
 uniform float juliaZoom;
 uniform float juliaSize;
+uniform vec2 initialZ;
+uniform bool initialZC;
+uniform float initialZCT;
 
 void main() {
     vec2 normCoord = vec2((gl_FragCoord.x/windowSize.x*4.-2.)*zoom-pos.x, (gl_FragCoord.y/windowSize.y*4.-2.)*zoom*windowSize.y/windowSize.x-pos.y);
@@ -135,7 +138,15 @@ void main() {
         c = vec2(-pos.x, -pos.y);
     }
     else{
-        z = vec2(0,0);
+        z = initialZ;
+        if(initialZC){
+            z.x+=normCoord.x;
+            z.y+=normCoord.y;
+        }
+        if(initialZCT != 0.){
+            z.x+=normCoord.x*initialZCT*time;
+            z.y+=normCoord.y*initialZCT*time;
+        }
         c = normCoord;
     }
     {{coloringAlgorithm}}
