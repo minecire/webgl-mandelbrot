@@ -1,5 +1,7 @@
 var fragmentShaderSourcePreedit = `#version 300 es
 
+#define M_PI 3.1415926535897932384626433832795
+
 precision highp float;
 
 // float dthreshold = pow(2., -20.);
@@ -50,6 +52,9 @@ vec2 csqr(vec2 a)
 vec2 cpow(vec2 a, vec2 b)
 {
     vec2 polara = vec2(sqrt(dot(a,a)), atan(a.y/a.x));
+    if(a.x < 0.){
+        polara.y+=M_PI;
+    }
     return vec2(pow(polara.x, b.x) * exp(-b.y*polara.y)*cos(b.x*polara.y+b.y*log(polara.x)), pow(polara.x, b.x) * exp(-b.y*polara.y)*sin(b.x*polara.y+b.y*log(polara.x)));
 }
 
@@ -73,6 +78,24 @@ uniform float time;
 vec2 func(vec2 z, vec2 c)
 {
     return {{function}};
+}
+
+float circleArcDistance(vec2 circleCenter, float circleRadius, vec2 arcAngles, vec2 point){
+    vec2 centeredPoint = vec2(point.x-circleCenter.x, point.y-circleCenter.y);
+    float pointAngle = atan(centeredPoint.y/centeredPoint.x);
+    if(centeredPoint.x < 0.){
+        pointAngle+=M_PI;
+    }
+    if(pointAngle < arcAngles.y && pointAngle > arcAngles.x){
+        return(abs(sqrt(centeredPoint.x*centeredPoint.x+centeredPoint.y*centeredPoint.y) - circleRadius));
+    }
+    else{
+        vec2 arcEnd1 = vec2(circleRadius*cos(arcAngles.x)+circleCenter.x-point.x, circleRadius*sin(arcAngles.x)+circleCenter.y-point.y);
+        vec2 arcEnd2 = vec2(circleRadius*cos(arcAngles.y)+circleCenter.x-point.x, circleRadius*sin(arcAngles.y)+circleCenter.y-point.y);
+        float arcEnd1Dist = arcEnd1.x*arcEnd1.x+arcEnd1.y*arcEnd1.y;
+        float arcEnd2Dist = arcEnd2.x*arcEnd2.x+arcEnd2.y*arcEnd2.y;
+        return(sqrt(min(arcEnd1Dist, arcEnd2Dist)));
+    }
 }
 
 float distFunc(vec2 z)
@@ -184,3 +207,8 @@ var distancePoint = `dot(z,z)`;
 var distanceCircle = `abs(dot(z,z)-1.)`;
 var distanceCross = `min(abs(z.x), abs(z.y))`;
 var distanceFourCircles = `abs(dot(vec2(abs(z.x)-1., abs(z.y)-1.),vec2(abs(z.x)-1., abs(z.y)-1.))-1.)`;
+var distanceStar = `min(min(
+    circleArcDistance(vec2(-1,-1), 1., vec2(0, M_PI/2.), z), 
+    circleArcDistance(vec2(1,-1), 1., vec2(M_PI/2., M_PI), z)), min(
+    circleArcDistance(vec2(1,1), 1., vec2(M_PI, 3.*M_PI/2.), z), 
+    circleArcDistance(vec2(-1,1), 1., vec2(-M_PI/2., 0), z)))`;

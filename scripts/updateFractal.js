@@ -137,7 +137,8 @@ var distanceAlgorithmTable = [
     ["point", distancePoint],
     ["circle", distanceCircle],
     ["cross", distanceCross],
-    ["fourCircles", distanceFourCircles]
+    ["fourCircles", distanceFourCircles],
+    ["star", distanceStar]
 ]
 
 function getDistanceAlgorithm(value){

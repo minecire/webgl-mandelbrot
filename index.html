@@ -21,7 +21,7 @@
             <option value="z^z+c">Exponentialbrot II</option>
             <option value="c^z+c">Exponentialbrot III</option>
         </select>
-        <input type="text" id="formulaText" name="formulaText" value="zc+1/(z+c)" placeholder="z^2+c">
+        <input type="text" id="formulaText" name="formulaText" value="z^2+c" placeholder="z^2+c">
         <label>Z=</label><input type="text" name="initZX" id="initZX" value="0"><label>+</label><input type="text" id="initZY" name="initZY" value="0"><label>i</label><input type="checkbox" id="initZC"><label>+c?</label><input type="checkbox" id="initZCT" onchange="toggleZCTSlider()"><label>+ct?</label><input type="range" id="initZCTSlider" style="display: none;"></label><br>
         <label>Iteration Count</label>
         <input type="text" id="iterationCount" name="iterationCount" value="1000" placeholder="Iterations">
@@ -30,22 +30,25 @@
             <option value="background-image: linear-gradient(to right top, #140101, #372c26, #5c5449, #7f8272, #a1b2a4, #a1bfae, #9fccba, #9ad9ca, #75c4a4, #5bae79, #4c974a, #457f0e);#509f5a, #698c34, #7a7714, #876000, #a43e11, #b6003a, #ac0071, #6a11af">Soft Brown</option>
             <option value=" background-image: linear-gradient(to right top, #0d014a, #00367c, #00639a, #008fa5, #00b9a4, #65c78a, #a5d072, #e4d368, #ffba6d, #ffa091, #ff93c6, #fd9bfd);">Warm Ocean</option>
             <option value=" background-image: linear-gradient(to right top, #043203, #265424, #477844, #699e66, #8dc68a, #93d590, #99e496, #9ff49c, #87ec82, #6ee567, #52dc49, #2ad422);">Cozy Greens</option>
+            <option value=" background-image: linear-gradient(to right top, #6d1111, #87301b, #a14b27, #b96834, #d18542, #da9951, #e3ac61, #ecc073, #ebcd89, #ecd99f, #eee4b6, #f2efce);">Soft Flame</option>
+            <option value=" background-image: linear-gradient(to right top, #020425, #1d2847, #394a6c, #576e93, #7795bb, #78a9d1, #77bee5, #76d3f7, #49d8f1, #03dde2, #00dfca, #34e0ab);">Deep Blue</option>
         </select>
         <input type="text" id="colorScheme" name="colorScheme" value="background-image: linear-gradient(to right top, #140101, #372c26, #5c5449, #7f8272, #a1b2a4, #a1bfae, #9fccba, #9ad9ca, #75c4a4, #5bae79, #4c974a, #457f0e);#509f5a, #698c34, #7a7714, #876000, #a43e11, #b6003a, #ac0071, #6a11af" placeholder="Color Scheme">
         <label>Color Period</label>
         <input type="text" id="colorPeriod" name="colorPeriod" value="100">
         <label>Orbit Trap</label>
-        <input type="checkbox" id="enableOrbitTrap" name="enableOrbitTrap" checked="true" onchange="toggleOrbitTrapOptions()">
-        <div id="orbitTrapOptions" style="display: inline">
+        <input type="checkbox" id="enableOrbitTrap" name="enableOrbitTrap" checked="false" onchange="toggleOrbitTrapOptions()">
+        <div id="orbitTrapOptions" style="display: none">
         <label>Orbit Trap Type</label>
             <select id = "orbitTrapType" name="orbitTrapType">
                 <option value="point">Point</option>
                 <option value="circle">Circle</option>
                 <option value="cross">Cross</option>
                 <option value="fourCircles">Four Circles</option>
+                <option value="star">Star</option>
             </select>
         </div>
-        <input type="button" id="update" name="update" value="Update" onclick="beginShader()">
+        <input type="button" id="update" name="update" value="Update" onclick="updateFractal(); beginShader();">
         <script src="https://webgl2fundamentals.org/webgl/resources/webgl-utils.js"></script>
         <script type="text/javascript" src="scripts/options.js"></script>
         <script type="text/javascript" src="scripts/fragShader.js"></script>

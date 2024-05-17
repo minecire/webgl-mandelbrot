@@ -41,7 +41,6 @@ var windowSizeUniformLocation;
 var positionUniformLocation;
 var zoomUniformLocation;
 function beginShader(){
-    updateFractal();
     if (!gl) {
       return;
     }
@@ -124,6 +123,7 @@ function beginShader(){
 }
 
 function draw(){
+    gl.flush();
     webglUtils.resizeCanvasToDisplaySize(gl.canvas);
     currentTime = Date.now();
     if(paused){
@@ -174,8 +174,9 @@ function createProgram(gl, vertexShader, fragmentShader) {
    
     console.log(gl.getProgramInfoLog(program));
     gl.deleteProgram(program);
-  }
+}
 
+updateFractal();
 beginShader()
 
 document.addEventListener("wheel", function(event){
@@ -297,7 +298,7 @@ document.addEventListener("keydown", function(event){
     }
     if(event.key == 'x'){
         juliaZoom = zoom;
-        juliaPos = pos;
+        juliaPos = [...pos];
         draw();
     }
 })
